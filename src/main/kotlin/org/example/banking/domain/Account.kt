@@ -5,7 +5,7 @@ import kotlin.concurrent.withLock
 
 class Account(
     val id: AccountId,
-    val ownerId: String,
+    val ownerId: OwnerId,
     initialBalance: Money,
 ) {
     val lock: ReentrantLock = ReentrantLock()

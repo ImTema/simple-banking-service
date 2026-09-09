@@ -5,6 +5,7 @@ import org.example.banking.domain.AccountId
 import org.example.banking.domain.BankResult
 import org.example.banking.domain.BankError
 import org.example.banking.domain.Money
+import org.example.banking.domain.OwnerId
 import org.example.banking.repository.AccountRepository
 import java.math.BigDecimal
 import java.util.Currency
@@ -13,8 +14,9 @@ import kotlin.concurrent.withLock
 class Bank(private val repository: AccountRepository) {
 
     fun createAccount(ownerId: String, initialDeposit: BigDecimal, currency: Currency): BankResult<Account> {
+        if (ownerId.isBlank()) return BankResult.Failure(BankError.InvalidOwnerId)
         if (initialDeposit < BigDecimal.ZERO) return BankResult.Failure(BankError.InvalidAmount)
-        val account = Account(AccountId.generate(), ownerId, Money(initialDeposit, currency))
+        val account = Account(AccountId.generate(), OwnerId(ownerId), Money(initialDeposit, currency))
         repository.save(account)
         return BankResult.Success(account)
     }

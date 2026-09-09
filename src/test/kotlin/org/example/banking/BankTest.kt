@@ -33,8 +33,17 @@ class BankTest {
         val result = bank.createAccount("owner-1", BigDecimal("100.00"), usd)
 
         val account = assertIs<BankResult.Success<Account>>(result).value
-        assertEquals("owner-1", account.ownerId)
+        assertEquals("owner-1", account.ownerId.value)
         assertEquals(money("100.00"), account.balance)
+    }
+
+    @Test
+    fun `rejects a blank owner id`() {
+        val bank = bank()
+
+        val result = bank.createAccount(" ", BigDecimal("100.00"), usd)
+
+        assertEquals(BankResult.Failure(BankError.InvalidOwnerId), result)
     }
 
     @Test
