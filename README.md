@@ -29,6 +29,14 @@ deployable service with an API — callers use it directly through the `Bank` cl
 - Kotlin, built with Maven
 - JUnit 5 + `kotlin-test-junit5` for tests
 
+## Requirements
+
+- JDK 8 or newer
+- Maven 3.6+
+
+Kotlin itself is pulled in by Maven (`kotlin-maven-plugin`, version 2.3.20) — no separate Kotlin
+install needed.
+
 ## Running the tests
 
 ```
