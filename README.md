@@ -29,6 +29,15 @@ deployable service with an API — callers use it directly through the `Bank` cl
 - Kotlin, built with Maven
 - JUnit 5 + `kotlin-test-junit5` for tests
 
+## Running the tests
+
+```
+mvn test
+```
+
+Runs the full JUnit5 suite (`src/test/kotlin/org/example/banking/BankTest.kt`), including the
+concurrency tests.
+
 ## Out of scope
 
 - Multiple accounts per user.
