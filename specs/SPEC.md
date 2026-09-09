@@ -38,7 +38,7 @@ Build a single-module Kotlin/Maven library exposing one entry point, `Bank`, whi
 - **Language/build**: Kotlin on the existing Maven project (`pom.xml`), Kotlin 2.3.20, single module. No Gradle migration.
 - **Package layout**: two packages under the project's base package — `domain` (`Account`, `Money`, `Currency` usage, sealed `Result`/error types) and `repository` (`AccountRepository` interface + `InMemoryAccountRepository`). `Bank` sits at the top level as the sole entry point.
 - **`Bank`** (single class, no separate `AccountService`/`BankService` split): holds one `AccountRepository` instance, injected at construction. Exposes:
-  - `createAccount(ownerId: String, initialDeposit: Money): Result<Account, BankError>`
+  - `createAccount(ownerId: String, initialDeposit: BigDecimal, currency: Currency): Result<Account, BankError>` — takes the raw amount/currency rather than a pre-built `Money`, so a negative initial deposit can be rejected as an `InvalidAmount` `Result` rather than throwing at `Money` construction time.
   - `deposit(accountId: AccountId, amount: Money): Result<Unit, BankError>`
   - `withdraw(accountId: AccountId, amount: Money): Result<Unit, BankError>`
   - `transfer(fromId: AccountId, toId: AccountId, amount: Money): Result<Unit, BankError>`
