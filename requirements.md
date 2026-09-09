@@ -14,12 +14,12 @@ Requirements:
 The word "service" here is used in a "software component/module" rather "deployable unit with an API" sense, no need to provide API for it.
 
 Personal touches:
-- DDD
-- thread safe
-- in memory database, separated into dedicated class to change later when needed (separation of concerns-like)
-- create README.md with brief description (what is it, what it has, stack, out-of-scope features)
-- include currency
-- include value objects
+- Apply domain-driven design principles.
+- Ensure thread safety.
+- Isolate in-memory storage behind a dedicated abstraction, so it can be replaced with a real database later without touching the domain logic (separation of concerns).
+- Provide a README.md with a brief description: what the project is, what it includes, the technology stack, and out-of-scope features.
+- Support currency-aware amounts.
+- Model core concepts as value objects.
 
 current out-of-scope:
 - multiple accounts per user
