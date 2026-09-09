@@ -73,6 +73,7 @@ Build a single-module Kotlin/Maven library exposing one entry point, `Bank`, whi
 - Any API layer (REST, gRPC, etc.) — this is a library/module, not a deployable service.
 - Persistent storage — in-memory only, behind an interface so it can be swapped later.
 - Gradle migration — project stays on Maven.
+- UUIDv7 account ids — JDK has no built-in support (RFC 9562 predates most current JDK releases), and hand-rolling it isn't worth the added surface for this scope. `AccountId` stays on `UUID.randomUUID()` (v4). Revisit if id sort-order or a real persistence layer ever needs it.
 
 ## Further Notes
 

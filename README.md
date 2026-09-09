@@ -55,5 +55,8 @@ concurrency tests.
   is ever added, but nothing here supports it yet.
 - Any API layer (REST, gRPC, etc.) — this is a library, not a deployable service.
 - Persistent storage — in-memory only, behind an interface so it can be swapped later.
+- UUIDv7 account ids — JDK has no built-in support, and hand-rolling it isn't worth the risk for
+  this scope. `AccountId` uses `UUID.randomUUID()` (v4). Revisit if id sort-order or a real
+  persistence layer ever needs it.
 
 See `specs/SPEC.md` for the full design spec.
